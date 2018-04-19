@@ -199,6 +199,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 120859140155325706, guid: aac25bbc27016494d8855d377d4a50ff,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4eb55267d0f4b294a8b4c85e3be34326, type: 2}
+    - target: {fileID: 120859140155325706, guid: aac25bbc27016494d8855d377d4a50ff,
+        type: 2}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212764262250803144, guid: aac25bbc27016494d8855d377d4a50ff,
+        type: 2}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac25bbc27016494d8855d377d4a50ff, type: 2}
   m_IsPrefabParent: 0
