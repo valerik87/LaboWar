@@ -5,7 +5,7 @@ using UnityEngine;
 // https://forum.unity.com/threads/linerenderer-to-create-an-ellipse.74028/ by Eidor
 
 [RequireComponent(typeof(LineRenderer))]
-public class CircleRendererTest : MonoBehaviour {
+public class CircleRenderer : MonoBehaviour {
     public enum Axis { X, Y, Z };
  
     [SerializeField]
@@ -128,7 +128,6 @@ public class CircleRendererTest : MonoBehaviour {
             }
  
             angle += ((_AngleTo-_AngleFrom) / _segments);
-            Debug.Log("angle " + angle);
         }
     }
 }
