@@ -68,6 +68,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4643061548002974}
+  - component: {fileID: 114371486056542978}
   - component: {fileID: 120805405721222464}
   - component: {fileID: 114121021107341954}
   - component: {fileID: 114050009791238942}
@@ -87,9 +88,11 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4331621434621280}
-  - component: {fileID: 114654988968611812}
   - component: {fileID: 212593860718899994}
   - component: {fileID: 114026986535788866}
+  - component: {fileID: 114654988968611812}
+  - component: {fileID: 114734168471070216}
+  - component: {fileID: 50066777315066578}
   m_Layer: 0
   m_Name: Army
   m_TagString: Untagged
@@ -166,6 +169,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50066777315066578
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995605091953618}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58327164793964636
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -175,7 +198,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -234,11 +257,11 @@ MonoBehaviour:
   _segments: 60
   _AngleFrom: -105
   _AngleTo: 105
-  _Radius: 10
+  radius: 10
   _isWorldCoord: 0
   _offset: 0
   _axis: 2
-  _checkValuesChanged: 1
+  checkValuesChanged: 1
 --- !u!114 &114249995921270134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -253,6 +276,19 @@ MonoBehaviour:
   Color: {r: 1, g: 0, b: 0, a: 1}
   PlayerName: Battezzami cazzo!!
   GOCity: {fileID: 1037756713310926}
+--- !u!114 &114371486056542978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908706005229308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9c5f57f1b0e054aa4d9a0ce4268768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAreaCollider: {fileID: 58327164793964636}
+  circleRenderer: {fileID: 114121021107341954}
 --- !u!114 &114654988968611812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -265,6 +301,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.1
+--- !u!114 &114734168471070216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1995605091953618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e3f982af4d48444bb80390d7b78727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  forceCircleRendererRange: 1
 --- !u!120 &120805405721222464
 LineRenderer:
   m_ObjectHideFlags: 1

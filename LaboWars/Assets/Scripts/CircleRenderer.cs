@@ -25,7 +25,7 @@ public class CircleRenderer : MonoBehaviour {
 
     [SerializeField]
     [Tooltip("The radius.")]
-    private float _Radius = 10;
+    public float radius = 10;
 
     [SerializeField]
     [Tooltip("Enable to use world coord")]
@@ -41,11 +41,10 @@ public class CircleRenderer : MonoBehaviour {
  
     [SerializeField]
     [Tooltip("If checked, the circle will be rendered again each time one of the parameters change.")]
-    private bool _checkValuesChanged = true;
+    public bool checkValuesChanged = true;
  
     private int _previousSegmentsValue;
-    private float _previousHorizRadiusValue;
-    private float _previousVertRadiusValue;
+    private float previousRadius;
     private float _previousOffsetValue;
     private Axis _previousAxisValue;
     private float _previousAngleFrom;
@@ -67,10 +66,10 @@ public class CircleRenderer : MonoBehaviour {
  
     void Update()
     {
-        if (_checkValuesChanged)
+        if (checkValuesChanged)
         {
             if (_previousSegmentsValue != _segments ||
-                _previousHorizRadiusValue != _Radius ||
+                previousRadius != radius ||
                 _previousOffsetValue != _offset ||
                 _previousAxisValue != _axis ||
                 _line.useWorldSpace != _isWorldCoord ||
@@ -88,7 +87,7 @@ public class CircleRenderer : MonoBehaviour {
     void UpdateValuesChanged()
     {
         _previousSegmentsValue = _segments;
-        _previousHorizRadiusValue = _Radius;
+        previousRadius = radius;
         _previousOffsetValue = _offset;
         _previousAxisValue = _axis;
         _line.useWorldSpace = _isWorldCoord;
@@ -112,8 +111,8 @@ public class CircleRenderer : MonoBehaviour {
  
         for (int i = 0; i < (_segments + 1); i++)
         {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * _Radius;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * _Radius;
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
  
             switch(_axis)
             {
