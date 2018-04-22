@@ -142,11 +142,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4694779280348140, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.054253086
       objectReference: {fileID: 0}
     - target: {fileID: 4694779280348140, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9985273
       objectReference: {fileID: 0}
     - target: {fileID: 4694779280348140, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
       propertyPath: m_RootOrder
@@ -240,11 +240,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 58327164793964636, guid: 12093efb6d386d54aa57641f88cf9438,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1694370926918052, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
       propertyPath: m_Name
       value: Player (1)
@@ -252,18 +247,20 @@ Prefab:
     - target: {fileID: 114249995921270134, guid: 12093efb6d386d54aa57641f88cf9438,
         type: 2}
       propertyPath: Color.r
-      value: 0.034482475
+      value: 0.19999981
       objectReference: {fileID: 0}
     - target: {fileID: 114249995921270134, guid: 12093efb6d386d54aa57641f88cf9438,
         type: 2}
       propertyPath: Color.b
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4694779280348140, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 29.86
+    - target: {fileID: 114371486056542978, guid: 12093efb6d386d54aa57641f88cf9438,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 12093efb6d386d54aa57641f88cf9438, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1652763539
