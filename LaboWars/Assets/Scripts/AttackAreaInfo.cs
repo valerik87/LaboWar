@@ -11,15 +11,16 @@ public class AttackAreaInfo : MonoBehaviour {
 
     private float radius = 0;
     private List<GameObject> targets;
+    private List<AttackParabola> attackParabola;
 
     //Not enough, i need to get an istance and use untill targe it's in area, then release. PoolAllocator should be a static singleton where to ask instance
     //of AttackObj
-    private PoolAllocator<LineRenderer> lineRendererPool;
+    //private PoolAllocator<LineRenderer> lineRendererPool;
     
     // Use this for initialization
     void Start () {
         targets = new List<GameObject>();
-        lineRendererPool = new PoolAllocator<LineRenderer>();
+        attackParabola = new List<AttackParabola>();
     }
 
     // Update is called once per frame
@@ -80,9 +81,6 @@ public class AttackAreaInfo : MonoBehaviour {
         //Move in world coord
         Vector3 ParabolaVertexInLocalWorld = this.transform.TransformPoint(new Vector3(x, y, this.transform.localPosition.z));
         //Debug.Log("ParabolaVertexInLocalWorld " + ParabolaVertexInLocalWorld + " to obj " + other.name);
-
-        Vector3 PositionZero = ParabolaVertexInLocalWorld - this.transform.position;
-        Vector3 ZeroTarget = other.transform.position - ParabolaVertexInLocalWorld;
 
         Debug.DrawLine(this.transform.position, ParabolaVertexInLocalWorld, Color.red);
         Debug.DrawLine(ParabolaVertexInLocalWorld, other.transform.position, Color.green);

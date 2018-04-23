@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts
 {
-    public class PoolAllocator<T> where T : new()
+    public class PoolAllocator<T> : IDisposable where T : IDisposable, new()
     {
         private Stack<T> _items = new Stack<T>();
         private object _sync = new object(); 
@@ -30,6 +30,17 @@ namespace Assets.Scripts
             lock (_sync)
             {
                 _items.Push(item);
+            }
+        }
+
+        public void Dispose()
+        {
+            lock (_sync)
+            {
+                while( _items.Count > 0)
+                {
+                    _items.Pop().Dispose();
+                }                
             }
         }
     }
