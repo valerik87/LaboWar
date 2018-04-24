@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 58570841846157684}
   m_Layer: 0
   m_Name: Army
-  m_TagString: Untagged
+  m_TagString: Army
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694370926918052}
-  m_LocalRotation: {x: 0, y: 0, z: 0.054253086, w: 0.9985273}
+  m_LocalRotation: {x: 0, y: 0, z: -0.09497711, w: 0.99547946}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -169,7 +169,7 @@ Transform:
   - {fileID: 4331621434621280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 6.22}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -10.9}
 --- !u!50 &50448891196256886
 Rigidbody2D:
   serializedVersion: 4
@@ -199,7 +199,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -214,7 +214,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackAreaCollider: {fileID: 58327164793964636}
   circleRenderer: {fileID: 114121021107341954}
-  angle: 55
+  _attackMaterial: {fileID: 2100000, guid: 4eb55267d0f4b294a8b4c85e3be34326, type: 2}
 --- !u!114 &114654988968611812
 MonoBehaviour:
   m_ObjectHideFlags: 1

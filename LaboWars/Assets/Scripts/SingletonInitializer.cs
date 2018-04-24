@@ -10,14 +10,10 @@ public class SingletonInitializer : MonoBehaviour {
     void Awake()
     {
         AttackParabolaAllocator = SingletonAllocator<AttackParabola>.GetInstance();
-        test();
     }
 
     private static void test()
     {
-        AttackParabola parabola = AttackParabolaAllocator.GetFromPool().GetClassReferencer();
-        parabola.Setup();
-        parabola.Draw();
     }
 
     void OnDestroy()

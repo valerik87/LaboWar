@@ -9,5 +9,8 @@ namespace Assets.Scripts
     interface ClassReferencer<T>
     {
         T GetClassReferencer();
+
+        void EnableGameObject();
+        void DisableGameObject();
     }
 }

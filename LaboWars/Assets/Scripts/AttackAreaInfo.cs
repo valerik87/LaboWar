@@ -10,28 +10,15 @@ public class AttackAreaInfo : MonoBehaviour {
     public CircleRenderer circleRenderer;
 
     private float radius = 0;
-    private List<GameObject> targets;
-    private List<AttackParabola> attackParabola;
+    private List<KeyValuePair<GameObject, AttackParabola>> parabolasList;
 
-    //Not enough, i need to get an istance and use untill targe it's in area, then release. PoolAllocator should be a static singleton where to ask instance
-    //of AttackObj
-    //private PoolAllocator<LineRenderer> lineRendererPool;
-    
+    [SerializeField]
+    private Material _attackMaterial = null;
+
     // Use this for initialization
-    void Start () {
-        targets = new List<GameObject>();
-        attackParabola = new List<AttackParabola>();
-    }
-
-    // Update is called once per frame
-    void Update () {
-        if(targets.Count > 0)
-        {
-            foreach(GameObject target in targets)
-            {
-                ParabolaTrajectoryTo(target);
-            }            
-        }        
+    void Start ()
+    {
+        parabolasList = new List<KeyValuePair<GameObject, AttackParabola>>();
     }
 
     public void SetupRange(float NewRadius)
@@ -42,50 +29,55 @@ public class AttackAreaInfo : MonoBehaviour {
         radius = NewRadius;
     }
 
+    // Update is called once per frame
+    void Update () {
+        if(parabolasList.Count > 0)
+        {
+            foreach(KeyValuePair<GameObject, AttackParabola> target in parabolasList)
+            {
+                target.Value.Draw(this.gameObject, target.Key ,radius);
+            }            
+        }        
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log(other.name);
-        if(!targets.Contains(other.gameObject))
+        if(other.gameObject.CompareTag("Army"))
         {
-            targets.Add(other.gameObject);
+            bool found = false;
+            foreach (KeyValuePair<GameObject, AttackParabola> KV in parabolasList)
+            {
+                if (KV.Key == other.gameObject)
+                {
+                    found = true;
+                }
+            }
+
+            if (!found)
+            {
+                AttackParabola attackParabola = SingletonAllocator<AttackParabola>.GetInstance().GetFromPool();
+                parabolasList.Add(new KeyValuePair<GameObject, AttackParabola>(other.gameObject, attackParabola));
+
+                attackParabola.Setup(this.gameObject.transform.position,other.gameObject.transform.position,_attackMaterial);
+                attackParabola.EnableGameObject();
+                attackParabola.Draw(this.gameObject, other.gameObject, radius);
+            }
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (targets.Contains(other.gameObject))
+        foreach(KeyValuePair<GameObject,AttackParabola> KV in parabolasList)
         {
-            targets.Remove(other.gameObject);
-        }
+            if(KV.Key == other.gameObject)
+            {
+                parabolasList.Remove(KV);
+                KV.Value.DisableGameObject();
+                SingletonAllocator<AttackParabola>.GetInstance().Free(KV.Value);
+                break;
+            }                
+        } 
     }
-
-    void ParabolaTrajectoryTo(GameObject other)
-    {
-        float x = 0;
-        float cosx = 0;
-        float y = 0;
-        float angle = 0;
-        //Target coord in local view
-        Vector3 targetCoordInLocal = other.transform.InverseTransformPoint(this.transform.position);
-        cosx = (targetCoordInLocal.x/2) / radius;
-        angle = Mathf.Acos(cosx);
-        x = this.transform.localPosition.x + Mathf.Cos(Mathf.PI - angle) * radius;   
-        y = this.transform.localPosition.y + Mathf.Sin(Mathf.PI - angle) * radius;
-                                            
-        //Debug.Log("TargetCoordInLocal = " + targetCoordInLocal);
-        //Debug.Log("cosx = " + cosx);
-        //Debug.Log("angle = " + angle*Mathf.Rad2Deg);
-        //Debug.Log("x = " + x);
-        //Debug.Log("y = " + y);
-        
-        //Move in world coord
-        Vector3 ParabolaVertexInLocalWorld = this.transform.TransformPoint(new Vector3(x, y, this.transform.localPosition.z));
-        //Debug.Log("ParabolaVertexInLocalWorld " + ParabolaVertexInLocalWorld + " to obj " + other.name);
-
-        Debug.DrawLine(this.transform.position, ParabolaVertexInLocalWorld, Color.red);
-        Debug.DrawLine(ParabolaVertexInLocalWorld, other.transform.position, Color.green);
-
-        LineRenderer linerenderer = this.gameObject.GetComponent<LineRenderer>();
-        Assert.IsTrue(linerenderer == null);
-    }
+    
 }
