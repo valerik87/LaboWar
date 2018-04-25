@@ -30,7 +30,6 @@ public class CameraMovement : MonoBehaviour {
         if(Input.GetAxis("Mouse ScrollWheel") != 0)
         {
             //Zoom In&Out
-            //zoom
             CameraDistance += -Input.GetAxis("Mouse ScrollWheel") * ScrollSpeed;
             CameraDistance = Mathf.Clamp(CameraDistance, TerrainLevel, SkyLevel);
             Camera.orthographicSize = CameraDistance;
@@ -68,8 +67,11 @@ public class CameraMovement : MonoBehaviour {
         ////Rotation
         if (Input.GetMouseButton(1))
         {
-            float AxisSign = Mathf.Sign(Input.GetAxis("Mouse X"));
-            Camera.transform.RotateAround(Vector3.zero, Vector3.back, AxisSign * RotationSpeedZAxis);
+            if(Input.GetAxis("Mouse X") != 0)
+            {
+                float AxisSign = Mathf.Sign(Input.GetAxis("Mouse X"));
+                Camera.transform.RotateAround(Vector3.zero, Vector3.back, AxisSign * RotationSpeedZAxis);
+            }            
         }
     }
 }

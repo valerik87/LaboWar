@@ -64,12 +64,9 @@ namespace Assets.Scripts
 
         public void Draw(GameObject Start, GameObject Target, float radius)
         {
-            //lineRenderer.SetPosition(0, origin = Start.transform.position);
-            //lineRenderer.SetPosition(1, target = Target.transform.position);
             ParabolaTrajectoryTo(Start, Target, radius);
         }
-
-        void ParabolaTrajectoryTo(GameObject start, GameObject target, float radius)
+        List<Vector3> ParabolaTrajectoryTo(GameObject start, GameObject target, float radius)
         {
             float x = 0;
             float cosx = 0;
@@ -97,23 +94,23 @@ namespace Assets.Scripts
 
             Assert.IsFalse(lineRenderer == null);
 
-            //with Parabola Vertex it's possible to make interpolation
-
-            //line from origin to vertex
+            //with Parabola Vertex it's possible to make interpolations
             float i = 0.0f;
             int counter = 0;
+            List<Vector3> points = new List<Vector3>();
             for (; i <= 1 && counter < Segments ; ++counter)
             {
-                Vector3 TangentOrigin = Vector3.Lerp(start.transform.position, ParabolaVertexInLocalWorld, i);
-                Vector3 TangentTarget = Vector3.Lerp(ParabolaVertexInLocalWorld, target.transform.position, i);
+                Vector3 TangentOriginPos = Vector3.Lerp(start.transform.position, ParabolaVertexInLocalWorld, i);
+                Vector3 TangentTargetPos = Vector3.Lerp(ParabolaVertexInLocalWorld, target.transform.position, i);
 
-                Vector3 point = Vector3.Lerp(TangentOrigin, TangentTarget, i);
-                lineRenderer.SetPosition(counter, point);
+                points.Add(Vector3.Lerp(TangentOriginPos, TangentTargetPos, i));
+                lineRenderer.SetPosition(counter, points[counter]);
                 i = i + (1.0f / Segments);
-
-                //TODO save the points and then use for make animation
-                lineRenderer.material.mainTextureOffset.Set(i, i);
             }
+            //TODO save the points and then use for make animation moving the material, for example: arrow starting and reaching the target
+            lineRenderer.material.mainTextureOffset = new Vector2(lineRenderer.material.mainTextureOffset.x - Time.deltaTime, lineRenderer.material.mainTextureOffset.y);
+
+            return points;
         }
     }
 }
